@@ -66,3 +66,13 @@ WHERE order_id = 1
 SELECT order_id, quantity FROM order_items
 JOIN products ON order_items.product_id = products.product_id
 WHERE order_id = 1
+
+UPDATE products
+SET stock_quantity = stock_quantity - 2
+WHERE product_id = (SELECT product_id FROM products WHERE product_name = 'Phone')
+
+DELETE FROM orders
+WHERE order_id = 1
+
+DELETE FROM order_items
+WHERE order_id = 1
