@@ -54,3 +54,15 @@ INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
 ((SELECT student_id FROM students WHERE first_name = 'Matthew' AND last_name = 'English'), (SELECT course_id FROM courses WHERE course_name = 'English 201'), '2024-04-29'),
 ((SELECT student_id FROM students WHERE first_name = 'Charlie' AND last_name = 'Smith'), (SELECT course_id FROM courses WHERE course_name = 'Physics 101'), '2024-04-26'),
 ((SELECT student_id FROM students WHERE first_name = 'Charlie' AND last_name = 'Smith'), (SELECT course_id FROM courses WHERE course_name = 'History 101'), '2024-04-26')
+
+SELECT first_name || ' ' || last_name AS full_name FROM students
+JOIN enrollments ON students.student_id = enrollments.student_id
+JOIN courses ON courses.course_id = enrollments.course_id
+WHERE courses.course_name = 'Physics 101'
+
+SELECT course_name, first_name || ' ' || last_name AS full_name FROM courses
+JOIN professers ON courses.professor_id = professers.professor_id
+
+SELECT course_name FROM courses
+JOIN enrollments ON courses.course_id = enrollments.course_id
+JOIN students ON students.student_id = enrollments.student_id
