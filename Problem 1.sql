@@ -27,3 +27,30 @@ CREATE TABLE enrollments  (
 	PRIMARY KEY (student_id, course_id)
 );
 
+INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
+('Alice', 'Zueberg', 'alice.leah@example.com', '2024-04-25'),
+('Charlie', 'Smith', 'charlie.smith@example.com', '2024-04-26'),
+('Kait', 'Broma', 'kait.broma@example.com', '2024-04-27'),
+('Leah', 'Smith', 'niki.smith@example.com', '2024-04-28'),
+('Matthew', 'English', 'matthew.english@example.com', '2024-04-29')
+
+INSERT INTO professers (first_name, last_name, department) VALUES
+('Dalice', 'Johnson', 'Physics'),
+('Niki', 'Roman', 'English'),
+('Tyrone', 'Hiyema', 'History'),
+('Peter', 'Hawthorn', 'Counselor')
+
+INSERT INTO courses (course_name, course_description, professor_id) VALUES
+('Physics 101', 'Introduction to Physics', 1),
+('English 201', 'Basics of English', 2),
+('History 101', 'A Look into Historical Events', 3)
+
+INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
+((SELECT student_id FROM students WHERE first_name = 'Alice' AND last_name = 'Zueberg'), (SELECT course_id FROM courses WHERE course_name = 'Physics 101'), '2024-04-25'),
+((SELECT student_id FROM students WHERE first_name = 'Alice' AND last_name = 'Zueberg'), (SELECT course_id FROM courses WHERE course_name = 'English 201'), '2024-04-25'),
+((SELECT student_id FROM students WHERE first_name = 'Kait' AND last_name = 'Broma'), (SELECT course_id FROM courses WHERE course_name = 'History 101'), '2024-04-27'),
+((SELECT student_id FROM students WHERE first_name = 'Leah' AND last_name = 'Smith'), (SELECT course_id FROM courses WHERE course_name = 'History 101'), '2024-04-28'),
+((SELECT student_id FROM students WHERE first_name = 'Leah' AND last_name = 'Smith'), (SELECT course_id FROM courses WHERE course_name = 'English 201'), '2024-04-28'),
+((SELECT student_id FROM students WHERE first_name = 'Matthew' AND last_name = 'English'), (SELECT course_id FROM courses WHERE course_name = 'English 201'), '2024-04-29'),
+((SELECT student_id FROM students WHERE first_name = 'Charlie' AND last_name = 'Smith'), (SELECT course_id FROM courses WHERE course_name = 'Physics 101'), '2024-04-26'),
+((SELECT student_id FROM students WHERE first_name = 'Charlie' AND last_name = 'Smith'), (SELECT course_id FROM courses WHERE course_name = 'History 101'), '2024-04-26')
