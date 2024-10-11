@@ -66,3 +66,11 @@ JOIN professers ON courses.professor_id = professers.professor_id
 SELECT course_name FROM courses
 JOIN enrollments ON courses.course_id = enrollments.course_id
 JOIN students ON students.student_id = enrollments.student_id
+
+UPDATE students
+SET email = 'matthew.e.neweremail@example.com'
+WHERE first_name = 'Matthew' AND last_name = 'English'
+
+DELETE FROM enrollments
+WHERE student_id = (SELECT student_id FROM students WHERE first_name = 'Leah' AND last_name = 'Smith')
+AND course_id = (SELECT course_id FROM courses WHERE course_name = 'History 101')
