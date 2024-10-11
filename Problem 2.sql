@@ -56,3 +56,13 @@ INSERT INTO order_items (order_id, product_id, quantity) VALUES
 (5, 3, 1),
 (5, 4, 1),
 (5, 5, 1)
+
+SELECT product_name, stock_quantity FROM products
+
+SELECT product_name, quantity FROM order_items
+JOIN products ON order_items.product_id = products.product_id
+WHERE order_id = 1
+
+SELECT order_id, quantity FROM order_items
+JOIN products ON order_items.product_id = products.product_id
+WHERE order_id = 1
